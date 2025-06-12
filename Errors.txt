@@ -1,0 +1,22 @@
+1.
+    The type java.lang.Object cannot be resolved. It is indirectly referenced from required .class files
+    1 fix is - configure build path. 
+    reason - project configured with jdk - 21 and eclipse configured with jdk - 17
+    solution - configured eclipse with jdk - 21 
+               Go to: Window → Preferences → Java → Installed JREs
+               Click Add... → Standard VM
+               Set path to:
+               C:\Program Files\Java\jdk-21
+
+2.  
+    Exception in thread "main" org.springframework.beans.factory.NoSuchBeanDefinitionException: 
+    reason - No qualifying bean of type 'com.example.SpringBasics.model.Alien' available
+    solution - missing "@Component" Annotation top of Alien CLass
+
+3. 
+    error : Web server failed to start. Port 8080 was already in use.
+    solution : stop the process that's listening on port 8080 or configure this application to listen on another port.
+             src/main/resources/application.properties
+              Add:
+                  server.port=8070 (add any port number)
+    
