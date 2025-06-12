@@ -19,4 +19,17 @@
              src/main/resources/application.properties
               Add:
                   server.port=8070 (add any port number)
+
+4.
+
+   Even after changing the port, the application still says "port already in use", and the process keeps running 
+   the background.
+   reason : When you stop the app from your IDE, it doesn't always kill the background Java process So when you
+            restart it, even on a different port, the JVM from the previous run might still be alive, holding the port.
+   solution : 1.Always use the red stop button to kill the app.
+              2.Check in your IDE: Run → Show Running List or Terminate All.
+              3.kill running process : 
+                     netstat -ano | findstr :8080
+                     taskkill /PID 8916 /F
+          
     

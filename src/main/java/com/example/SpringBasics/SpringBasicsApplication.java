@@ -11,7 +11,7 @@ public class SpringBasicsApplication {
 	public static void main(String[] args) {
 		ApplicationContext context = SpringApplication.run(SpringBasicsApplication.class, args);
 		Alien obj =  context.getBean(Alien.class);
-		obj.getAlien();
+		obj.code();
 	}
 
 }
