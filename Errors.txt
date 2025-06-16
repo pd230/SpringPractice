@@ -21,7 +21,6 @@
                   server.port=8070 (add any port number)
 
 4.
-
    Even after changing the port, the application still says "port already in use", and the process keeps running 
    the background.
    reason : When you stop the app from your IDE, it doesn't always kill the background Java process So when you
@@ -31,5 +30,26 @@
               3.kill running process : 
                      netstat -ano | findstr :8080
                      taskkill /PID 8916 /F
-          
+                     
+ 5.
+   (for XML Configuration)
+   Exception in thread "main" org.springframework.beans.factory.BeanDefinitionStoreException: IOException parsing XML
+   document from class path resource [bean.xml]
+   reason : bean.xml should be in a root folder
+   
+ 6.
+   Exception in thread "main" org.springframework.beans.factory.BeanCreationException: Error creating bean with name
+   'Alien' defined in class path resource 
+   [beans.xml]: Invalid property 'laptop' of bean class [springDemo.Alien]: Bean property 'laptop' is not writable or
+    has an invalid setter method. Does the parameter type of the setter match the return type of the getter?
     
+    Caused by:Invalid property 'laptop' of bean class
+    [springDemo.Alien]: Bean property 'laptop' is not writable or has an invalid setter method. 
+    Does the parameter type of the setter match the return type of the getter?
+     
+    reason : while working with .xml configuration . if we are using property tag in xml for any property than
+    there must have setters and getters for that property in respective class.
+	
+	
+7.
+   PreparedStatementCallback; bad SQL grammar [INSERT INTO StudModel(id, anme, age) VALUES(?,?,?)]

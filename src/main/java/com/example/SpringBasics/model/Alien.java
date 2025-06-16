@@ -6,12 +6,17 @@ import org.springframework.stereotype.Component;
 @Component
 public class Alien {
 	
+//  Field Injection
+	
 //	@Autowired
 //	Laptop laptop1; 
 	
 //	public void code() {
 //		laptop1.compile();
 //	}
+	
+	
+//  Constructor Injection
 	
 //	@Autowired
 //	Laptop laptop2;
@@ -22,6 +27,9 @@ public class Alien {
 //	public void code() {
 //		laptop2.compile();
 //	}
+	
+	
+//  Setter Injection
 	
 	Laptop laptop3;
 	

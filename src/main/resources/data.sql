@@ -1,0 +1,1 @@
+insert into StudModel(id, name, age) values(101, 'pd', 20), (102, 'rd', 21), (103, 'xd', 25);

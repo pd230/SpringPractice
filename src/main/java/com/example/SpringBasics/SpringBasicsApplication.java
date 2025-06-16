@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import com.example.SpringBasics.model.Alien;
 
-@SpringBootApplication
+@SpringBootApplication		
 public class SpringBasicsApplication {
 
 	public static void main(String[] args) {
