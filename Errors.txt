@@ -53,3 +53,27 @@
 	
 7.
    PreparedStatementCallback; bad SQL grammar [INSERT INTO StudModel(id, anme, age) VALUES(?,?,?)]
+   
+8.
+   "One or more constraints have not been satisfied. Utility Module and Dynamic Web Module 6.0 cannot
+    both be selected."
+    
+    Root Cause:
+      Eclipse was treating my Spring Boot Maven project as a Dynamic Web Project
+      Spring Boot uses embedded Tomcat and runs as a standalone JAR
+      Hence, it does not require the Dynamic Web Module
+      The presence of both Dynamic Web Module and Utility Module in Project Facets led to facet conflict
+      Also, method in @Controller was not being called because of missing @ResponseBody and returning void
+
+    How I Resolved It:
+      
+      Deleted Eclipse Project Metadata:
+         .settings/
+         .project
+         .classpath
+      Re-imported the project:
+         As a Maven Project (File → Import → Maven → Existing Maven Project)
+      Made sure packaging in pom.xml is set to:
+         <packaging>jar</packaging>
+      Ran the project using:
+         Right-click → Run As → Java Application

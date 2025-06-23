@@ -9,9 +9,16 @@ import com.example.SpringBasics.model.Alien;
 public class SpringBasicsApplication {
 
 	public static void main(String[] args) {
-		ApplicationContext context = SpringApplication.run(SpringBasicsApplication.class, args);
-		Alien obj =  context.getBean(Alien.class);
-		obj.code();
+		SpringApplication.run(SpringBasicsApplication.class, args);
+		
+//		code for relational mapping (autowired , one to one , one to many , many to many , vist Alien.java , laptop.java from model pacakge)
+//		Alien obj =  context.getBean(Alien.class);
+//		obj.code();
+		
+//		for MVC demo
+		
+//		HomeController hc = context.getBean(HomeController.class);
+		
 	}
 
 }

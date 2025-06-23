@@ -98,5 +98,11 @@ public List<StudModel> find() {
 		System.out.println(rows +" updated !");
 	}
 	
+//	update alter table 
+	public void alter() {
+		String sql = "Alter table StudModel add marks int";
+		int rows = temp.update(sql);
+		System.out.println(rows + "Affected !");
+	}
 	
 }
