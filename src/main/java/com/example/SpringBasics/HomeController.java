@@ -1,3 +1,4 @@
+//A
 //- Implemented plain text response using @ResponseBody
 //- Returned JSP view using simple @RequestMapping
 //- Used HttpServletRequest, HttpServletResponse, RequestDispatcher, and HttpSession
@@ -5,6 +6,8 @@
 //- Added ModelAndView example for passing data to JSP
 //- Included examples using Model and ModelMap
 //- Set up basic controller with multiple request-handling strategies
+
+//B - @ModelAttribute
 
 
 package com.example.SpringBasics;
@@ -14,11 +17,14 @@ import java.io.IOException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.example.SpringBasics.model.User;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -28,7 +34,7 @@ import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class HomeController {
-	
+//------------------------------------------------ A ------------------------------------------------
 //	1.to return plain text 
 	
 //	@RequestMapping("/")
@@ -41,10 +47,10 @@ public class HomeController {
 	
 //	2.to return JSP file
 	
-	@RequestMapping("/")
-    public String Home() {
-	     return "welcome";
-    }
+//	@RequestMapping("/")
+//    public String Home() {
+//	     return "welcome";
+//    }
 	
 	
 //	3.using Servlet methods
@@ -79,14 +85,15 @@ public class HomeController {
 //	5.using ModelAndView
 //	@RequestMapping("/add")
 //	public ModelAndView add(@RequestParam("no1")int i, @RequestParam("no2") int j, ModelAndView mav) {
-////		ModelAndView mav = new ModelAndView();
+////	ModelAndView mav = new ModelAndView();(or)
+////	ModelAndView mav = new ModelAndView;(or)
 //		mav.setViewName("result");
 //		int k = i + j;
 //		mav.addObject("no3",k);
 //		return mav;
 //	}
 	
-//	6.using model
+//	6.using model - because ModelAndView returns object of ModelAndView which we dont want
 //	@RequestMapping("/add")
 //	public String add(@RequestParam("no1") int i , @RequestParam("no2")int j, Model m){
 //		int k = i + j;
@@ -94,11 +101,66 @@ public class HomeController {
 //		return "result";
 //	}
 	
-//	7.using ModelMap
-	@RequestMapping("/add")
-	public String add(@RequestParam("no1") int i , @RequestParam("no2")int j, ModelMap m){
-		int k = i + j;
-		m.addAttribute("no3", k);
-		return "result";
+////	7.using ModelMap
+//	@RequestMapping("/add")
+//	public String add(@RequestParam("no1") int i , @RequestParam("no2")int j, ModelMap m){
+//		int k = i + j;
+//		m.addAttribute("no3", k);
+//		return "result";
+//	}
+	
+	
+//-------------------------B----------------@ModelAttribute---------------------B--------------------
+	
+//	1. working with login page 
+	@RequestMapping("/")
+	public String getLogin(){
+		return "Login";
 	}
+	
+	
+//	2.using @RequestParam - one by one passing data to LoginResult
+//	@RequestMapping("/addUser")
+//	public String addUser(@RequestParam("uid")int id,@RequestParam("uname")String uname, Model m) {
+//		User user = new User();
+//		user.setUid(id);
+//		user.setUname(uname);
+//		m.addAttribute(user);
+//		return "LoginResult";
+//	}
+	
+//	3 using ModelAttribute with adding data in the Model manually
+//	@RequestMapping("/addUser")
+//	public String addUser(@ModelAttribute User user, Model m) {
+//		m.addAttribute("user", user);
+//		return "LoginResult";
+//	}
+	
+//	4 @ModelAttribute is responsible to add data in the Model , don't need add it manually
+//	@RequestMapping("/addUser")
+//	public String addUser(@ModelAttribute User user) {
+//		return "LoginResult";
+//	}
+	
+//	5 @ModelAttribute also accept the parameter , if we want to use different name for property. 
+//	  use that parameter name in jsp also
+//	@RequestMapping("/addUser")
+//	public String addUser(@ModelAttribute("u") User user) {
+//		return "LoginResult";
+//	}
+	
+//	 7 -------ModelAttribute on method level : all controllers which initialize after this method can
+//	          user name parameter will get the value of name as Queen 
+	@ModelAttribute 
+	public void addName(Model m) {
+		m.addAttribute("name", "Queen");
+	}
+	
+//	6 code will work without passing @ModelAttribute . we can call it by "user" attribute in jsp
+	@RequestMapping("/addUser")
+	public String addUser(User u) {
+		return "LoginResult";
+	}
+	
+	
 }
