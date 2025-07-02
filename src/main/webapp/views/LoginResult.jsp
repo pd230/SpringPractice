@@ -10,7 +10,7 @@
    <div style="height:100vh; width:100vw; display:flex; flex-direction:row;
                justify-content:center; align-items:center; background-color:khaki; ">
 <!-- method : 1 to call values  -->
-    <%
+ <!--  <%
        Object user = request.getAttribute("user");
     %>
     <%=user%><br><br><!-- calling toString method of user class -->
@@ -19,7 +19,8 @@
     Hello , ${user.getUname()}
     
 <!-- method : 2 to call ModelAttribute  -->
-    I am ${name}
+    I am ${name}-->
+  
     </div>
 </body>
 </html>

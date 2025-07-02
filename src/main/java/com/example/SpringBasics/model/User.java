@@ -4,6 +4,11 @@ public class User {
 	private int uid;
 	private String uname;
 	
+    public User(int uid, String uname) {
+    	this.uid = uid;
+    	this.uname = uname;
+    }
+	
 	public void setUid(int uid) {
 		this.uid = uid;
 	}
