@@ -10,8 +10,9 @@
 //B - @ModelAttribute
 
 //C - Mapping Request Types
-//      -GetMapping -PostMapping -RequestMapping
-//
+//     -GetMapping -PostMapping -RequestMapping
+
+//D - HIbernate , JPA
 
 
 package com.example.SpringBasics;
@@ -77,7 +78,7 @@ public class HomeController {
 //	     return "result";
 //   }
 	
-//	4.Still using HttpSession session and using RequestParam
+//	4.using HttpSession session and using RequestParam
 //	@RequestMapping("/add")
 //	public String add(@RequestParam("no1") int i , @RequestParam("no2") int j, HttpSession session) {
 //		int no3 = i + j;
@@ -199,7 +200,7 @@ public class HomeController {
 //		return "DisplayAll";
 //	}
 	
-//	HIbernate , JPA
+//	-----------D------------HIbernate , JPA-----------D------------------
 	
 	@RequestMapping("/getUsers")
 	public String getAll(Model m) {
@@ -224,6 +225,37 @@ public class HomeController {
 	public String addUser(@ModelAttribute UserHib u){
 		repo.save(u);
 		return "LoginResult";
+	}
+	
+//	@RequestMapping("/updateUser")
+//	public String update(@ModelAttribute UserHib u) {
+//		repo.save(u);
+//		return "DisplayAll";
+//	}
+	
+	@RequestMapping("/delete")
+	public String deleteUser(@RequestParam("uid") int uid, Model m, UserHib u) {
+		Optional<UserHib> user = repo.findById(uid);
+		if(!user.isEmpty()) {
+		     repo.deleteById(uid);
+		     m.addAttribute("UserRemovedMessage" , "user with "+uid+" removed !");
+		}else {
+			m.addAttribute("UserNotFoundWithId" , "user with "+uid+" not found !");
+		}
+		return "DisplayAll";
+	}
+	
+	@RequestMapping("/FindByName")
+	public String getByName(@RequestParam String uname, Model m) {
+		List<UserHib> users = repo.findByUnameOrderByUid(uname);
+		m.addAttribute("UsersByName", users);
+		return "DisplayAll";
+	}
+	
+	@RequestMapping("/updateUser")
+	public String update(@ModelAttribute UserHib u) {
+		repo.changeUname(u.getUid(), u.getUname());
+		return "DisplayAll";
 	}
 	
 	

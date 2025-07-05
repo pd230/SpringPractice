@@ -11,5 +11,9 @@
    ${AllUsers}-->
    ${singleUser}
    ${notFoundMessage}
+   ${u}
+   ${UserRemovedMessage}
+   ${UserNotFoundWithId}
+   ${UsersByName}
 </body>
 </html>
